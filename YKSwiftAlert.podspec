@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.description      = <<-DESC
                        
-                       
+                       YKSwiftAlert
                        
                        DESC
 

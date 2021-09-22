@@ -2,7 +2,7 @@
 //  YKSwiftAlertView.swift
 //  YKSwiftAlert
 //
-//  Created by linghit on 2021/9/22.
+//  Created by edward on 2021/9/22.
 //
 
 import UIKit
