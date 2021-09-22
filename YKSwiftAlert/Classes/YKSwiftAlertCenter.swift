@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 
 class YKSwiftAlertCenter: NSObject {
@@ -24,11 +25,6 @@ class YKSwiftAlertCenter: NSObject {
         }
         
         // 删除旧的先
-//        UIView *beforeView = [view viewWithTag:[YKAlertCenter kYK_AlertMessage_Tag]];
-//        if (beforeView) {
-//            [beforeView removeFromSuperview];
-//            beforeView = nil;
-//        }
         var beforeView = inView.viewWithTag(YKSwiftAlertCenter.kYK_AlertMessage_Tag())
         if beforeView != nil {
             beforeView!.removeFromSuperview()
@@ -48,10 +44,31 @@ class YKSwiftAlertCenter: NSObject {
             theStringSize.height = showH
         }
         
+        // 背景
         let showView:UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: showW, height: theStringSize.height+spacX*2))
         showView.tag = YKSwiftAlertCenter.kYK_AlertMessage_Tag()
         showView.alpha = 0
         showView.backgroundColor = UIColor.black.withAlphaComponent(0)
+        showView.layer.cornerRadius = isPad ? 10 : 7
+        showView.layer.masksToBounds = true
+        showView.center = CGPoint(x: inView.frame.width/2, y: inView.frame.height/2)
+        inView.addSubview(showView)
+        
+        // 内容
+        
+        let showLabel:UILabel = UILabel.init(frame: CGRect.init(x: spacX, y: spacX, width: showW - spacX*2, height: theStringSize.height))
+        showLabel.textAlignment = .center
+        showLabel.numberOfLines = 0
+        showLabel.text = message
+        showLabel.textColor = .white
+        showLabel.backgroundColor = .clear
+        showLabel.font = showFont
+        showView.addSubview(showLabel)
+        
+        // 动画
+        var tempView:UIView = showView
+        
+        
     }
     
     public static func showLoading(message:String)->Void
