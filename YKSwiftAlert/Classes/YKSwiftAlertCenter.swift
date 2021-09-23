@@ -166,7 +166,8 @@ public class YKSwiftAlertCenter: NSObject {
             var activityView:UIActivityIndicatorView? = nil
 
             if needCreateView {
-                activityView = UIActivityIndicatorView.init(style: .white)
+                activityView = UIActivityIndicatorView.init()
+                activityView!.color = .white
                 showView!.addSubview(activityView!)
             }
 
